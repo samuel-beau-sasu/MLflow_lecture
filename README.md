@@ -74,3 +74,24 @@ curl http://localhost:5002/invocations -H 'Content-Type: application/json' -d '{
 
 #
 python3 src/07_test_api.py
+
+## 5
+
+#
+python3 src/08_register_model.py \
+            --tracking_uri "http://127.0.0.1:8080" \
+            --experiment_name "Apple_Models" \
+            --model_name "apple_demand_predictor"
+
+
+
+# Déploiement de la version 1
+python3 src/09_serve_registry_model.py \
+    --tracking_uri "http://127.0.0.1:8080" \
+    --model_name "apple_demand_predictor" \
+    --version 1 \
+    --port 5002
+
+
+# test de la version 1 (dans un autre terminal)
+python3 src/07_test_api.py
