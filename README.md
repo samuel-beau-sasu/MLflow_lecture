@@ -36,3 +36,12 @@ lsof -i:8080
 
 # Arrêter les processus en cours sur le port 8080
 kill -9 $(lsof -t -i:8080)
+
+# exécuter le script src/get_mlflow_env.py
+python3 src/get_mlflow_env.py
+
+# arborescence
+tree -L 2
+
+#  lancer notre projet MLflow
+mlflow run ./src --experiment-id EXPERIMENT_ID --run-name first_run_reproduced --env-manager local
